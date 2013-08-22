@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="kerberosAREA" xmlns="http://maven.apache.org/DECORATION/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+	<poweredBy>
+		<logo name="TabTonic" href="http://www.tabtonic.com/"
+			img="images/logos/logo-tabtonic-150x75.png" />
+	</poweredBy>
+	<bannerLeft>
+		<name>TabTonic</name>
+		<src>images/logos/logo-tabtonic-150x75.png</src>
+		<href>http://www.tabtonic.com</href>
+	</bannerLeft>
+	<!-- 
+	<bannerRight>
+		<name>TabTonic</name>
+		<src>images/logos/logo-tabtonic-150x75.png</src>
+		<href>http://www.tabtonic.com</href>
+	</bannerRight>
+    -->
+	<skin>
+		<groupId>org.apache.maven.skins</groupId>
+		<artifactId>maven-fluido-skin</artifactId>
+		<version>1.3.0</version>
+	</skin>
+	<custom>
+		<fluidoSkin>
+			<topBarEnabled>false</topBarEnabled>
+			<sideBarEnabled>true</sideBarEnabled>
+			<!--<profile>pre-release</profile> -->
+			<sourceLineNumbersEnabled>true</sourceLineNumbersEnabled>
+		</fluidoSkin>
+	</custom>
+
+	<body>
+		<links>
+			<item name="TabTonic" href="http://www.tabtonic.com" />
+		</links>
+		<menu name="Quick Links">
+			<item name="Issues"
+				href="http://projects.tabtonic.com/mantisbt/set_project.php?project_id=1" />
+			<item name="SCM" href="http://projects.tabtonic.com/scm/?p=barcode.git" />
+		</menu>
+        <menu name="Getting Started">
+            <item name="Default Maven Plugins" href="/info/default-plugins.html" />
+            <item name="Logging with Log4j" href="/info/logging-with-log4j.html" />
+            <item name="Logging with Logback" href="/info/logging-with-logback.html" />
+            <item name="Logging with SLF4J" href="/info/logging-with-slf4j.html" />
+            <item name="Setting Up the Project" href="/info/project-setup.html" />
+            <item name="Project Structure" href="/info/project-structure.html" />
+            <item name="Working with Maven" href="/info/working-with-maven.html" />
+            <item name="Working with Git" href="/info/working-with-git.html" />
+            <item name="Documentation with xhtml" href="/info/using-xhtml.html" />
+            <item name="FAQ" href="/info/faq.html" />
+            
+        </menu>
+		<menu ref="modules" />
+		<menu ref="reports" />
+
+	</body>
+</project>    

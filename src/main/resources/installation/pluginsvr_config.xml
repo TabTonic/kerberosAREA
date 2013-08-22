@@ -1,0 +1,26 @@
+<!-- This sample configuration needs to be merged with the existing
+pluginsvr_config.xml file in order to install the plugin -->
+
+<plugin>
+    <!-- name can be anything unique -->
+    <name>TabTonic.Kerberos.AREA</name>
+    <!-- must be AREA -->
+    <type>AREA</type>
+    <!-- must be JAVA -->
+    <code>JAVA</code>
+    <!-- The installation file -->
+    <filename>C:/Program Files/BMC Software/ARSystem/Arserver/plugins/kerberosAREA/kerberosAREA-0.0.1-SNAPSHOT.jar</filename>
+    <!-- The class which extends AREAPlugin or implements the AREAPluggable interface -->
+    <classname>com.tabtonic.kerberosAREA</classname>
+    <!-- pathelement type="path" includes any dependency directories -->
+    <!-- <pathelement type="path">C:/Program Files/BMC Software/ARSystem/Arserver/plugins/kerberosAREA/</pathelement> -->
+    <!-- pathelement type="location" includes any dependency jars -->
+    <!-- <pathelement type="location"></pathelement> -->
+    
+    <!-- userDefined includes any configuration information specific to a given plugin -->
+    <userDefined>
+        <anything>My Configuration Info</anything>
+    </userDefined>
+</plugin>
+
+

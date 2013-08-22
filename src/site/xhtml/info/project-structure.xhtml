@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Using XHTML</title>
+<style type="text/css">
+.eclipsefile {
+    color: #999;
+}
+.important {
+    color: #F00;
+}
+</style>
+</head>
+
+<body>
+<p>The generated project structure is as follows
+  :</p>
+<pre>   │   <span class="eclipsefile">.classpath</span>     <strong>&lt;&lt; used by eclipse</strong>
+   │   <span class="eclipsefile">.project</span>       <strong>&lt;&lt; used by eclipse</strong>
+   │   <a href="http://maven.apache.org/pom.html">pom.xml</a>        <strong>&lt;&lt; used by Maven for building, documenting, and analyzing the project</strong>
+   │
+   ├───<span class="eclipsefile">.settings</span>    <strong>&lt;&lt; used by eclipse</strong>
+   │       <span class="eclipsefile">org.eclipse.core.resources.prefs</span>    <strong>&lt;&lt; used by eclipse</strong>
+   │       <span class="eclipsefile">org.eclipse.jdt.core.prefs</span>          <strong>&lt;&lt; used by eclipse</strong>
+   │       <span class="eclipsefile">org.eclipse.m2e.core.prefs</span>          <strong>&lt;&lt; used by eclipse</strong>
+   │
+   ├───<span class="important">src</span>                                   <strong class="important">&lt;&lt; Source files directory</strong>
+   │   ├───build                             <strong>&lt;&lt; Files specific to the build process, not distributed </strong>
+   │   │   ├───conf
+   │   │   │       buildNumber.properties     <strong>&lt;&lt; Maintains the current build number</strong>
+   │   │   │       <a href="http://checkstyle.sourceforge.net/config.html">checkStyle.xml</a>             <strong>&lt;&lt; Code analysis configuration file</strong>
+   │   │   │
+   │   │   └───dist                         <strong>&lt;&lt; Unprocessed files that should be part of the project distribution</strong>
+   │   ├───main                             <strong> &lt;&lt; code files go under the main branch, followed by their specific language</strong>
+   │   │   │                                  <strong>&lt;&lt;  If this project was perl, it would be src/main/perl, python would be /src/main/python</strong> 
+   │   │   ├───java
+   │   │   │   └───com.tabtonic                 <strong>&lt;&lt; com.tabtonic.kerberosAREA is the package name</strong>
+   │   │   │       └───folders
+   │   │   │           └───kerberosAREA
+   │   │   │                   Artifactid.java <strong>&lt;&lt; We start out with an artifact class</strong>
+   │   │   │                   Main.java       <strong>&lt;&lt; and a Main (runnable) class</strong>
+   │   │   │
+   │   │   └───resources                     <strong>&lt;&lt;resources are external files leveraged by the code under main.</strong>
+   │   │                                       <strong> &lt;&lt;  Things like images, configuration files, etc.</strong>
+   │   │                                       <strong> &lt;&lt;  src/main/resources/** are distributed with the package</strong>
+   │   │                                       
+   │   ├───<span class="important">test</span>                               <strong class="important">&lt;&lt; Test files directory</strong>
+   │   │  ├───conf                           <strong>&lt;&lt;  Configuration files for testing</strong>
+   │   │  ├───java                           <strong>&lt;&lt; Just like under src, each language gets it's own directory</strong>  
+   │   │  │   └───com.tabtonic                  <strong> &lt;&lt;  com.tabtonic.kerberosAREA is the package name</strong>
+   │   │  │       └───folders              <strong> &lt;&lt;  packages should correspond to the packages they test under main</strong>
+   │   │  │           └───kerberosAREA
+   │   │  │                   ArtifactidTest.java
+   │   │  │                   MainTest.java
+   │   │  │
+   │   │  └───resources                      <strong>&lt;&lt; resources specific to running tests</strong>
+   │   │          log4j.xml                     <strong>&lt;&lt; logging configuration for tests</strong>
+   │   ├───<span class="important">site</span>                               <strong class="important">&lt;&lt; the project site files</strong>
+   │       │   site.xml                     <strong>    &lt;&lt; configuration file for site appearance/structure</strong>
+   │       │
+   │       ├───fml                           <strong> &lt;&lt; FAQ Meta Language files (processed into html during mvn:site)</strong>
+   │       │       faq.fml                      <strong>&lt;&lt; Frequently Asked Questions</strong>
+   │       │
+   │       ├───markdown                       <strong>&lt;&lt; Markdown files</strong>
+   │       │   ├───doc
+   │       │   │       index.md
+   │       │   │       
+   │       │   └───info                     <strong> &lt;&lt; project startup documentation</strong>
+   │       │           default-plugins.md
+   │       │           logging-with-log4j.md
+   │       │           logging-with-logback.md
+   │       │           logging-with-slf4j.md
+   │       │           project-setup.md
+   │       │           project-structure.md
+   │       │           working-with-maven.md
+   │       │
+   │       ├───resources                   <strong> &lt;&lt; resources are copied into the site without processing</strong>
+   │       │   │
+   │       │   └───images                 <strong> </strong>
+   │       │           logo-tabtonic-150x75.png
+   │       │
+   │       └───xhtml                 <strong>       &lt;&lt; sample xhtml page</strong>
+   │               using-xhtml.xhtml
+   │    
+   │
+   ├───<span class="important">target</span>                 <strong class="important">              &lt;&lt; target directory will be regularly deleted, contains the results of the build process</strong>
+   │   ├───classes
+   │   │   ├───com.tabtonic
+   │   │   │   └───folders
+   │   │   │       └───kerberosAREA
+   │   │   │               Artifactid.class
+   │   │   │               Main.class
+   │   │   │
+   │   │   └───META-INF
+   │   │       │   MANIFEST.MF
+   │   │       │
+   │   │       └───maven
+   │   │           └───com.tabtonic
+   │   │               └───kerberosAREA
+   │   │                       pom.properties
+   │   │                       pom.xml
+   │   │
+   │   └───test-classes
+   │       │   log4j.xml
+   │       │
+   │       └───com.tabtonic
+   │           └───folders
+   │               └───kerberosAREA
+   │                       ArtifactidTest.class
+   │                       MainTest.class
+   │
+   └───<span class="important">tmp</span>                 <strong class="important"> &lt;&lt; Regularly cleaned, not processed, not stored in SCM</strong>
+           └───log          <strong>&lt;&lt; Output folder for testing log results</strong></pre>
+</body>
+</html>
