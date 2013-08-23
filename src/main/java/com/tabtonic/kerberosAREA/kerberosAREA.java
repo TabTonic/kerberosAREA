@@ -47,7 +47,8 @@ public class kerberosAREA extends AREAPlugin {
 
 
 		Properties prop = new Properties();
-		InputStream in = TestKerbAuth.class.getResourceAsStream("/kerberosAREA.config");
+		
+		InputStream in = getClass().getResourceAsStream("/kerberosAREA.config");
 		try {
 			prop.load(in);
 		} catch (IOException e1) {
@@ -55,7 +56,7 @@ public class kerberosAREA extends AREAPlugin {
 		}
 		//We need to convert the auth.login.config value before passing it to JAAS
 		String loginConfigFile=prop.getProperty("java.security.auth.login.config");
-		String loginConfigFileExForm = TestKerbAuth.class.getResource(loginConfigFile).toExternalForm();
+		String loginConfigFileExForm = getClass().getResource(loginConfigFile).toExternalForm();
 		prop.setProperty("java.security.auth.login.config", loginConfigFileExForm);
 		
 		
