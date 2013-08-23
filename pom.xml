@@ -17,9 +17,9 @@
 
 	<!-- TODO set up and link SCM Appropriately -->
 	<scm>
-		<url>http://projects.tabtonic.com/gitblit/kerberosAREA.git</url>
-		<connection>scm:git:file:////192.168.0.187/d$//Users/chewie/Projects/tabtonic/eclipse/repo/kerberosAREA/</connection>
-		<developerConnection>scm:git:file:////192.168.0.187/d$//Users/chewie/Projects/tabtonic/eclipse/repo/kerberosAREA/</developerConnection>
+		<url>https://github.com/TabTonic/kerberosAREA</url>
+		<connection>scm:git:git://github.com/TabTonic/kerberosAREA.git/</connection>
+		<developerConnection>scm:git:git@github.com:nevetS/kerberosAREA.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 	<distributionManagement>
@@ -27,17 +27,13 @@
 			<id>projects.tabtonic.com</id>
 			<url>scpexe://tatooine/media/bigraid/lab/TabTonic/localweb/projects/kerberosAREA</url>
 		</site>
-		<repository>
-			<id>internal.repo</id>
-			<name>TabTonic Internal Repository</name>
-			<url>file:D:\maven\apache-maven-3.0.4\repository</url>
-		</repository>
+
 	</distributionManagement>
 
 	<!-- TODO set up and link issueManagement Appropriately -->
 	<issueManagement>
-		<system>Mantis</system>
-		<url>http://projects.tabtonic.com/mantisbt/set_project.php?project_id=5&amp;ref=view_all_bug_page.php</url>
+		<system>GitHub Issues</system>
+		<url>https://github.com/TabTonic/kerberosAREA/issues</url>
 	</issueManagement>
 
 
@@ -53,10 +49,9 @@
 	</developers>
 	<licenses>
 		<license>
-			<name>TabTonic Proprietary License 1.0</name>
-			<url>http://projects.tabtonic.com/TTLicense10.txt</url>
+			<name>GNU General Public License 3.0</name>
+			<url>http://www.gnu.org/licenses/gpl-3.0.html</url>
 			<distribution>repo</distribution>
-			<comments>Proprietary license.  This code may not be redistributed without the express permission of TabTonic, LLC.</comments>
 		</license>
 	</licenses>
 
