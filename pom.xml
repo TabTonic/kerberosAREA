@@ -61,12 +61,7 @@
 			<version>4.11</version>
 		</dependency>
 
-        <dependency>
-            <groupId>com.tabtonic.build</groupId>
-            <artifactId>standard-build</artifactId>
-            <version>1.0.0</version>
-            <type>pom</type>
-        </dependency>
+
         <dependency>
         	<groupId>com.bmc</groupId>
         	<artifactId>pluginsvr</artifactId>
@@ -95,7 +90,153 @@
 	</dependencyManagement>
 	
 <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <!-- Exclude any files from the src/build from the resulting jar -->
+                    <exclude>build/**</exclude>
+                </excludes>
+            </resource>
+        </resources>
   <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.4.1</version>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <goals>
+                            <goal>perform</goal>
+                        </goals>
+                        <configuration></configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <!-- build the project site -->
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.2</version>
+                <dependencies>
+                    <dependency>
+                        <!-- for parsing xhtml -->
+                        <groupId>org.apache.maven.doxia</groupId>
+                        <artifactId>doxia-module-xhtml</artifactId>
+                        <version>1.4</version>
+                    </dependency>
+                    <dependency>
+                        <!-- for parsing markdown -->
+                        <groupId>org.apache.maven.doxia</groupId>
+                        <artifactId>doxia-module-markdown</artifactId>
+                        <version>1.4</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <!-- increments the build number for each build -->
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>1.2</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- don't check for uncommitted changes -->
+                    <doCheck>true</doCheck>
+                    <!-- don't update repository with new build number -->
+                    <doUpdate>true</doUpdate>
+                    <buildNumberPropertiesFileLocation>${basedir}/src/main/resources/build/conf/buildNumber.properties</buildNumberPropertiesFileLocation>
+                    <!-- incremental number -->
+                    <format>{0,number}</format>
+                    <items>
+                        <item>buildNumber</item>
+                    </items>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- this plugin parses the version information later to be used in the 
+                    launch4j configuration -->
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>parse-version</id>
+                        <goals>
+                            <goal>parse-version</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <addMavenDescriptor>false</addMavenDescriptor>
+                    <excludes>
+                        <exclude>**/build/**</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <minimizeJar>false</minimizeJar>
+                    <!-- <artifactSet> <excludes> Do not distribute the ARS API Files <exclude>com.bmc.ars:*</exclude> 
+                        Pull log4j out because ARS is dependent on it and ProGuard won't process 
+                        with it embedded <exclude>com.tabtonic.local:log4j</exclude> </excludes> 
+                        </artifactSet> -->
+
+                    <transformers>
+                        <!-- Manifest Entries -->
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <manifestEntries>
+                                <Built-By>TabTonic</Built-By>
+                                <Created-By>TabTonic Standard Build Configuration for Maven 1.0</Created-By>
+                                <Implementation-Build>${buildNumber}</Implementation-Build>
+                                <ProductVersion>${project.version}</ProductVersion>
+                                <ProductName>kerberosAREA</ProductName>
+                            </manifestEntries>
+                        </transformer>
+                        <!-- Combine Licenses from Dependencies -->
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer"></transformer>
+                        <!-- Combine Notices from Dependencies -->
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheNoticeResourceTransformer">
+                            <addHeader>false</addHeader>
+                        </transformer>
+                    </transformers>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+  
     <plugin>
       <groupId>com.github.github</groupId>
       <artifactId>site-maven-plugin</artifactId>
