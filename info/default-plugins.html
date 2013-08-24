@@ -9,9 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20130823" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>kerberosAREA - 
-
-Using XHTML</title>
+    <title>kerberosAREA - </title>
     <link rel="stylesheet" href="../css/apache-maven-fluido-1.3.0.min.css" />
     <link rel="stylesheet" href="../css/site.css" />
     <link rel="stylesheet" href="../css/print.css" media="print" />
@@ -20,7 +18,7 @@ Using XHTML</title>
     <script type="text/javascript" src="../js/apache-maven-fluido-1.3.0.min.js"></script>
 
     
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />        </head>
+            </head>
         <body class="topBarDisabled">
           
                 
@@ -79,12 +77,10 @@ Using XHTML</title>
             </li>
                               <li class="nav-header">Getting Started</li>
                                 
-      <li>
+      <li class="active">
     
-                          <a href="../info/default-plugins.html" title="Default Maven Plugins">
-          <i class="none"></i>
-        Default Maven Plugins</a>
-            </li>
+            <a href="#"><i class="none"></i>Default Maven Plugins</a>
+          </li>
                   
       <li>
     
@@ -135,10 +131,12 @@ Using XHTML</title>
         Working with Git</a>
             </li>
                   
-      <li class="active">
+      <li>
     
-            <a href="#"><i class="none"></i>Documentation with xhtml</a>
-          </li>
+                          <a href="../info/using-xhtml.html" title="Documentation with xhtml">
+          <i class="none"></i>
+        Documentation with xhtml</a>
+            </li>
                   
       <li>
     
@@ -174,37 +172,141 @@ Using XHTML</title>
                 
         <div id="bodyColumn"  class="span9" >
                                   
-            
-
-
-
-
-<h1>Using XHTML for project pages</h1>
-
-<p>Markdown is easy to work with, but there are some things that Markdown is not very good at.</p>
-
-<p>Use XHTML when you need to </p>
+            <div class="section">
+<h2>Default Plugins<a name="Default_Plugins"></a></h2>
+<p>The following list of maven plugins is installed by default.</p>
 
 <ul>
   
-<li>Insert Images</li>
+<li>Reporting
   
-<li>Use Tables</li>
+<ul>
+    
+<li><a class="externalLink" href="http://maven.apache.org/plugins/maven-project-info-reports-plugin/">maven-project-info-reports-plugin</a>
+    
+<ul>
+      
+<li>Generates basic project reports</li>
+      
+<li>mailing list report disabled</li>
+      
+<li>dependency reports disabled because they slow down the build process</li>
+    </ul></li>
+    
+<li><a class="externalLink" href="http://maven.apache.org/plugins/maven-checkstyle-plugin/">maven-checkstyle-plugin</a>
+    
+<ul>
+      
+<li>Code style checking</li>
+      
+<li>Configured via src/build/conf/checkStyle.xml</li>
+      
+<li><a class="externalLink" href="http://checkstyle.sourceforge.net/">Project Site at Sourceforge</a></li>
+    </ul></li>
+    
+<li><a class="externalLink" href="http://maven.apache.org/surefire/maven-surefire-report-plugin">maven-surefire-report-plugin</a>
+    
+<ul>
+      
+<li>Generates reports from automated tests</li>
+    </ul></li>
+    
+<li><a class="externalLink" href="http://maven.apache.org/plugins/maven-javadoc-plugin/">maven-javadoc-plugin</a>
+    
+<ul>
+      
+<li>Generates javadoc pages for site</li>
+    </ul></li>
+    
+<li><a class="externalLink" href="http://maven.apache.org/jxr/maven-jxr-plugin/">maven-jxr-plugin</a>
+    
+<ul>
+      
+<li>Generates referencable line-number enabled pages for referencing code</li>
+    </ul></li>
+    
+<li><a class="externalLink" href="http://maven.apache.org/plugins/maven-pmd-plugin/">maven-pmd-plugin</a>
+    
+<ul>
+      
+<li>PMD is a source code analyzer. It finds common programming flaws like unused variables, empty catch blocks, unnecessary object creation, and so forth.</li>
+      
+<li><a class="externalLink" href="http://pmd.sourceforge.net/">At sourceforge</a></li>
+    </ul></li>
+    
+<li><a class="externalLink" href="http://maven.apache.org/plugins/maven-changelog-plugin/">maven-changelog-plugin</a>
+    
+<ul>
+      
+<li>Generates changelog from source code management repository</li>
+    </ul></li>
+    
+<li><a class="externalLink" href="http://mojo.codehaus.org/findbugs-maven-plugin">findbugs-maven-plugin</a>
+    
+<ul>
+      
+<li>code analysis</li>
+      
+<li><a class="externalLink" href="http://findbugs.sourceforge.net/factSheet.html">At sourceforge</a></li>
+    </ul></li>
+  </ul></li>
   
-<li>Use Javascript</li>
+<li>Build
   
-<li>Do complicated layouts</li>
-</ul>
-
-<p>You can build the xhtml page in Dreamweaver or any other XHTML editor.</p>
-
-<p>You can use <a class="externalLink" href="http://maven.apache.org/doxia/references/index.html">XHTML, Markdown, FML, LaTeX, RTF, or Xdoc</a> to produce site pages as long as they are in the appropriate directory.</p>
-
-<p>If a file has the extra extension &quot;.vm&quot; it will be rendered by <a class="externalLink" href="http://velocity.apache.org/site/tools/velocity-site-doxia-renderer/">Velocity</a>. This allows you to include things like the Project Name, Version, etc. in your site pages.</p>
-
-<p><img src="/images/logo-tabtonic-150x75.png" width="150" height="75" alt="" /></p>
-
-
+<ul>
+    
+<li><a class="externalLink" href="http://maven.apache.org/plugins/maven-compiler-plugin/">maven-compiler-plugin</a>
+    
+<ul>
+      
+<li>necessary to levarage a java version other than 1.5</li>
+      
+<li>configured to 1.6</li>
+    </ul></li>
+    
+<li><a class="externalLink" href="http://maven.apache.org/plugins/maven-site-plugin/">maven-site-plugin</a>
+    
+<ul>
+      
+<li>for generating this site</li>
+    </ul></li>
+    
+<li><a class="externalLink" href="http://mojo.codehaus.org/buildnumber-maven-plugin">buildnumber-maven-plugin</a>
+    
+<ul>
+      
+<li>for auto-incrementing build numbers</li>
+    </ul></li>
+    
+<li><a class="externalLink" href="http://mojo.codehaus.org/build-helper-maven-plugin">build-helper-maven-plugin</a>
+    
+<ul>
+      
+<li>brings in version variables that can be used elsewhere in the build process</li>
+    </ul></li>
+    
+<li><a class="externalLink" href="http://maven.apache.org/plugins/maven-jar-plugin/">maven-jar-plugin</a>
+    
+<ul>
+      
+<li>for generating the jar file and customizing the output</li>
+    </ul></li>
+    
+<li><a class="externalLink" href="http://maven.apache.org/plugins/maven-shade-plugin/">maven-shade-plugin</a>
+    
+<ul>
+      
+<li>generates the uber-jar including the dependencies</li>
+    </ul></li>
+    
+<li><a class="externalLink" href="http://maven.apache.org/maven-release/maven-release-plugin/">maven-release-plugin</a>
+    
+<ul>
+      
+<li>manages version numbers and tags SCM releases</li>
+    </ul></li>
+  </ul></li>
+</ul></div>
                   </div>
             </div>
           </div>

@@ -9,9 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20130823" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>kerberosAREA - 
-
-Using XHTML</title>
+    <title>kerberosAREA - </title>
     <link rel="stylesheet" href="../css/apache-maven-fluido-1.3.0.min.css" />
     <link rel="stylesheet" href="../css/site.css" />
     <link rel="stylesheet" href="../css/print.css" media="print" />
@@ -20,7 +18,7 @@ Using XHTML</title>
     <script type="text/javascript" src="../js/apache-maven-fluido-1.3.0.min.js"></script>
 
     
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />        </head>
+            </head>
         <body class="topBarDisabled">
           
                 
@@ -93,12 +91,10 @@ Using XHTML</title>
         Logging with Log4j</a>
             </li>
                   
-      <li>
+      <li class="active">
     
-                          <a href="../info/logging-with-logback.html" title="Logging with Logback">
-          <i class="none"></i>
-        Logging with Logback</a>
-            </li>
+            <a href="#"><i class="none"></i>Logging with Logback</a>
+          </li>
                   
       <li>
     
@@ -135,10 +131,12 @@ Using XHTML</title>
         Working with Git</a>
             </li>
                   
-      <li class="active">
+      <li>
     
-            <a href="#"><i class="none"></i>Documentation with xhtml</a>
-          </li>
+                          <a href="../info/using-xhtml.html" title="Documentation with xhtml">
+          <i class="none"></i>
+        Documentation with xhtml</a>
+            </li>
                   
       <li>
     
@@ -174,37 +172,95 @@ Using XHTML</title>
                 
         <div id="bodyColumn"  class="span9" >
                                   
-            
+            <div class="section">
+<h2>logback.xml<a name="logback.xml"></a></h2>
+<p>The logback.xml file is used to configure logging output for <a class="externalLink" href="http://logback.qos.ch/">logback-classic</a>. Logback-classic is one of the potential outputs for <a class="externalLink" href="http://www.slf4j.org/">slf4j</a>.</p>
+<p>Basics</p>
+<p>Every xml file follows a set of standards. Every element has an opening and a closing tag.</p>
 
+<div class="source">
+<pre>&lt;configuration&gt;something goes in there&lt;/configuration&gt;
+</pre></div>
+<p>Optionally, elements can have attributes that define the element more specifically. Attributes are specified within the opening tag following a simple name=value convention.</p>
 
+<div class="source">
+<pre>&lt;appender name=&quot;STDOUT&quot;&gt;something here&lt;/appender&gt;
+</pre></div>
+<p>The basic format of logback.xml is as follows:</p>
 
+<div class="source">
+<pre>configuration
+|
+--appender name=...  class=...
+|   |
+|   --encoder
+|     |
+|     --pattern
+|
+--root level=(trace,info,warn,debug)
+|   |
+|   --appender-ref ref=...
+|
+--logger name=... level=(TRACE,INFO,WARN,ERROR)
+</pre></div>
+<div class="section">
+<h3>Where To Send Log Output<a name="Where_To_Send_Log_Output"></a></h3>
+<p>Multiple outputs can be specified by simply including more than one appender element under a given configuration.</p>
+<p>Logging to File</p>
 
-<h1>Using XHTML for project pages</h1>
+<div class="source">
+<pre>&lt;configuration&gt;
+    &lt;appender name=&quot;FILE&quot; class=&quot;ch.qos.logback.core.FileAppender&quot;&gt;
+    &lt;file&gt;LogFile.log&lt;/file&gt;
+    &lt;encoder&gt;
+       &lt;pattern&gt;%date %level [%thread] %logger{10} [%file:%line] %msg%n&lt;/pattern&gt;
+    &lt;/encoder&gt;
+&lt;/configuration&gt;
+</pre></div>
+<p>Logging to STDOUT</p>
 
-<p>Markdown is easy to work with, but there are some things that Markdown is not very good at.</p>
+<div class="source">
+<pre>&lt;configuration&gt;
+    &lt;appender name=&quot;STDOUT&quot; class=&quot;ch.qos.logback.core.ConsoleAppender&quot;&gt;
+    &lt;encoder&gt;
+       &lt;pattern&gt;%date %level [%thread] %logger{10} [%file:%line] %msg%n&lt;/pattern&gt;
+    &lt;/encoder&gt;
+&lt;/configuration&gt;
+</pre></div></div>
+<div class="section">
+<h3>Output patterns<a name="Output_patterns"></a></h3>
+<p>Output patterns are laid out in detail <a class="externalLink" href="http://logback.qos.ch/manual/layouts.html">here</a>.</p>
 
-<p>Use XHTML when you need to </p>
+<div class="source">
+<pre>%logger{10}     mainPackage.sub.sample.Bar     m.s.s.Bar
+%date|%d       date, optionally formatted {dd MMM YYYY ; HH:mm:ss.SSS}
+%level|le|p     the level of the output
+%thread        the name of the thread generating the output
+%file      the nane of the java source file generating the output
+%line      the line of the java source
+%msg         the message itself
+%n          platform independent line separator (&quot;\n&quot;,&quot;\r\n&quot;)
+</pre></div></div>
+<div class="section">
+<h3>Loglevels<a name="Loglevels"></a></h3>
 
-<ul>
-  
-<li>Insert Images</li>
-  
-<li>Use Tables</li>
-  
-<li>Use Javascript</li>
-  
-<li>Do complicated layouts</li>
-</ul>
+<div class="source">
+<pre>trace
+debug
+info
+warn
+error
+fatal
+</pre></div></div>
+<div class="section">
+<h3>Per Class Configuration<a name="Per_Class_Configuration"></a></h3>
+<p>the logger name is usually the class name. Options for levels are: TRACE, DEBUG, INFO, WARN, ERROR, ALL or OFF. Levels are case insensitive</p>
 
-<p>You can build the xhtml page in Dreamweaver or any other XHTML editor.</p>
-
-<p>You can use <a class="externalLink" href="http://maven.apache.org/doxia/references/index.html">XHTML, Markdown, FML, LaTeX, RTF, or Xdoc</a> to produce site pages as long as they are in the appropriate directory.</p>
-
-<p>If a file has the extra extension &quot;.vm&quot; it will be rendered by <a class="externalLink" href="http://velocity.apache.org/site/tools/velocity-site-doxia-renderer/">Velocity</a>. This allows you to include things like the Project Name, Version, etc. in your site pages.</p>
-
-<p><img src="/images/logo-tabtonic-150x75.png" width="150" height="75" alt="" /></p>
-
-
+<div class="source">
+<pre>&lt;logger name=&quot;com.mycompany.LogsLikeCrazy&quot;  level=&quot;OFF&quot;/&gt;
+&lt;logger name=&quot;com.mycompany.NeedsDebugging&quot; level=&quot;DEBUG&quot;/&gt;
+&lt;logger name=&quot;com.mycompany.JustErrors&quot;     level=&quot;ERROR&quot;/&gt;
+</pre></div></div></div>
                   </div>
             </div>
           </div>
