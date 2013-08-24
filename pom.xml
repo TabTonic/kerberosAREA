@@ -22,13 +22,6 @@
 		<developerConnection>scm:git:git@github.com:nevetS/kerberosAREA.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
-	<distributionManagement>
-		<site>
-			<id>projects.tabtonic.com</id>
-			<url>scpexe://tatooine/media/bigraid/lab/TabTonic/localweb/projects/kerberosAREA</url>
-		</site>
-
-	</distributionManagement>
 
 	<!-- TODO set up and link issueManagement Appropriately -->
 	<issueManagement>
@@ -124,6 +117,19 @@
         </execution>
       </executions>
     </plugin>
+          <plugin>    
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-site-plugin</artifactId>
+              <version>3.3</version>
+              <dependencies>
+                <dependency>
+                  <groupId>org.apache.maven.doxia</groupId>
+                  <artifactId>doxia-module-markdown</artifactId>
+                  <version>1.4</version>
+                </dependency>
+              </dependencies>
+            </plugin>    
   </plugins>
 </build>	
- </project>
+ <description>This is a plugin for authenticating remedy logins against a kerberos environment.</description>
+</project>

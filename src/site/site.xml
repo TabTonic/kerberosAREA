@@ -39,8 +39,8 @@
 		</links>
 		<menu name="Quick Links">
 			<item name="Issues"
-				href="http://projects.tabtonic.com/mantisbt/set_project.php?project_id=1" />
-			<item name="SCM" href="http://projects.tabtonic.com/scm/?p=barcode.git" />
+				href="https://github.com/TabTonic/kerberosAREA/issues" />
+			<item name="Source" href="https://github.com/TabTonic/kerberosAREA" />
 		</menu>
         <menu name="Getting Started">
             <item name="Default Maven Plugins" href="/info/default-plugins.html" />
