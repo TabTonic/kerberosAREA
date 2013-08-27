@@ -30,7 +30,7 @@
   </licenses>
   <scm>
     <connection>scm:git:git://github.com/TabTonic/kerberosAREA.git/</connection>
-    <developerConnection>scm:git:git@github.com:nevetS/kerberosAREA.git</developerConnection>
+    <developerConnection>scm:git:git@github.com:TabTonic/kerberosAREA.git</developerConnection>
     <tag>kerberosAREA-0.0.1</tag>
     <url>https://github.com/TabTonic/kerberosAREA</url>
   </scm>
