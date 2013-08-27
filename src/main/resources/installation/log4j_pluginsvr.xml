@@ -1,0 +1,37 @@
+ <!-- 
+     Copyright (C) 2013 TabTonic LLC
+  
+     This file is part of kerberosAREA.
+ 
+     kerberosAREA is free software: you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+ 
+     kerberosAREA is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU General Public License for more details.
+ 
+     You should have received a copy of the GNU General Public License
+     along with kerberosAREA.  If not, see <http://opensource.org/licenses/gpl-3.0.html>.
+ -->
+ 
+ 
+ <!-- THIS FILE IS ***NOT*** MEANT TO REPLACE THE EXISITNG log4j_pluginsvr.xml file -->
+ <!-- This file should be merged with the existing log4j_pluginsvr.xml -->
+ <!-- The contents can be pasted parallel to other <appender> elements within that file -->
+ 
+        <appender class="org.apache.log4j.RollingFileAppender" name="kerberosAREALog">
+                <param name="File" value="/opt/bmc/ARSystem/db/kerberosAREA.log"/>
+                <param name="MaxFileSize" value="5MB"/>
+                <!-- Keep two backups -->
+                <param name="MaxBackupIndex" value="2"/>
+                <layout class="org.apache.log4j.PatternLayout">
+                <param name="ConversionPattern" value="%d %-5p [%t] %C (%F:%L) - %m%n"/>
+                </layout>
+        </appender>
+         <logger additivity="true" name="com.tabtonic.kerberosAREA">
+                <level value="debug"/>
+                <appender-ref ref="kerberosAREALog"/>
+        </logger>
