@@ -25,7 +25,7 @@
 	<distributionManagement>
 		<repository>
 			<id>bintray</id>
-			<url>https://api.bintray.com/maven/tabtonic/kerberosAREA/test</url>
+			<url>https://api.bintray.com/maven/tabtonic/kerberosAREA/Releases</url>
 		</repository>
 	</distributionManagement>
 	<issueManagement>
@@ -63,13 +63,14 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
+			<scope>test</scope>
 		</dependency>
 
 
 		<dependency>
 			<groupId>com.bmc</groupId>
 			<artifactId>pluginsvr</artifactId>
-			<version>8.1</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -90,10 +91,16 @@
 				<artifactId>log4j</artifactId>
 				<version>1.2.17</version>
 			</dependency>
+			<dependency>
+				<groupId>com.bmc</groupId>
+				<artifactId>pluginsvr</artifactId>
+				<version>8.1</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<build>
+	    <finalName>${project.artifactId}-${project.version}-r${buildNumber}</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -213,9 +220,15 @@
 				<version>2.1</version>
 				<configuration>
 					<minimizeJar>false</minimizeJar>
-					<excludes>
-						<exclude>com.bmc.ars:*</exclude>
-					</excludes>
+					<filters>
+					 <filter>
+					 <artifact>com.bmc:pluginsvr</artifact>
+					 <excludes>
+                        <exclude>com/bmc/**</exclude>
+                        <exclude>/**</exclude>
+					 </excludes>
+					 </filter>
+					</filters>
 
 
 					<transformers>
