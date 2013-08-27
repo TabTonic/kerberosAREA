@@ -4,7 +4,7 @@
   <groupId>com.tabtonic</groupId>
   <artifactId>kerberosAREA</artifactId>
   <name>kerberosAREA</name>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <description>This is a plugin for authenticating remedy logins against a kerberos environment.</description>
   <url>http://www.tabtonic.com/projects/kerberosAREA</url>
   <issueManagement>
@@ -31,6 +31,7 @@
   <scm>
     <connection>scm:git:git://github.com/TabTonic/kerberosAREA.git/</connection>
     <developerConnection>scm:git:git@github.com:nevetS/kerberosAREA.git</developerConnection>
+    <tag>kerberosAREA-0.0.1</tag>
     <url>https://github.com/TabTonic/kerberosAREA</url>
   </scm>
   <organization>
@@ -63,7 +64,6 @@
             <goals>
               <goal>perform</goal>
             </goals>
-            <configuration />
           </execution>
         </executions>
       </plugin>
