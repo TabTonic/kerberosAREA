@@ -4,7 +4,7 @@
 
 	<groupId>com.tabtonic</groupId>
 	<artifactId>kerberosAREA</artifactId>
-	<version>0.0.2</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>kerberosAREA</name>
@@ -19,7 +19,7 @@
 		<url>https://github.com/TabTonic/kerberosAREA</url>
 		<connection>scm:git:git://github.com/TabTonic/kerberosAREA.git/</connection>
 		<developerConnection>scm:git:git@github.com:TabTonic/kerberosAREA.git</developerConnection>
-		<tag>kerberosAREA-0.0.2</tag>
+		<tag>kerberosAREA-0.0.1</tag>
 	</scm>
 
 	<!-- TODO set up and link issueManagement Appropriately -->
