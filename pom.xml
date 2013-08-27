@@ -15,7 +15,6 @@
 		<url>http://www.tabtonic.com</url>
 	</organization>
 
-	<!-- TODO set up and link SCM Appropriately -->
 	<scm>
 		<url>https://github.com/TabTonic/kerberosAREA</url>
 		<connection>scm:git:git://github.com/TabTonic/kerberosAREA.git/</connection>
@@ -94,7 +93,7 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <excludes>
-                    <!-- Exclude any files from the src/build from the resulting jar -->
+                    <!-- Exclude any files from the src/main/resources/build from the resulting jar -->
                     <exclude>build/**</exclude>
                 </excludes>
             </resource>
@@ -208,10 +207,10 @@
                 <version>2.1</version>
                 <configuration>
                     <minimizeJar>false</minimizeJar>
-                    <!-- <artifactSet> <excludes> Do not distribute the ARS API Files <exclude>com.bmc.ars:*</exclude> 
-                        Pull log4j out because ARS is dependent on it and ProGuard won't process 
-                        with it embedded <exclude>com.tabtonic.local:log4j</exclude> </excludes> 
-                        </artifactSet> -->
+                    <excludes> 
+                        <exclude>com.bmc.ars:*</exclude> 
+                    </excludes> 
+                        
 
                     <transformers>
                         <!-- Manifest Entries -->

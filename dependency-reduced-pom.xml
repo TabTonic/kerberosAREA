@@ -78,6 +78,11 @@
           </dependency>
           <dependency>
             <groupId>org.apache.maven.doxia</groupId>
+            <artifactId>doxia-module-fml</artifactId>
+            <version>1.4</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.maven.doxia</groupId>
             <artifactId>doxia-module-markdown</artifactId>
             <version>1.4</version>
           </dependency>
@@ -141,6 +146,9 @@
         </executions>
         <configuration>
           <minimizeJar>false</minimizeJar>
+          <excludes>
+            <exclude>com.bmc.ars:*</exclude>
+          </excludes>
           <transformers>
             <transformer>
               <manifestEntries>
