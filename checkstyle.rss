@@ -9,8 +9,8 @@
     <copyright>&#169;2013 TabTonic</copyright>
     <item>
       <title>File: 3,
-             Errors: 245,
-             Warnings: 2,
+             Errors: 273,
+             Warnings: 14,
              Infos: 0
       </title>
             <link>http://www.tabtonic.com/projects/kerberosAREA/checkstyle.html</link>
@@ -49,10 +49,10 @@
                   0
                 </td>
                 <td>
-                  0
+                  12
                 </td>
                 <td>
-                  177
+                  206
                 </td>
               </tr>
                           <tr>
@@ -66,7 +66,7 @@
                   2
                 </td>
                 <td>
-                  68
+                  67
                 </td>
               </tr>
                       </tbody>
