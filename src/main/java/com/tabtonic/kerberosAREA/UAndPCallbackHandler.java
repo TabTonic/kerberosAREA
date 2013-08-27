@@ -51,7 +51,7 @@ public class UAndPCallbackHandler implements CallbackHandler {
 	
 	public UAndPCallbackHandler(String userName, char[] password){
 		_userName = userName;
-		_password = password;
+		_password = password.clone();
 	}
 	
 	public void handle(Callback[] callbacks) throws IOException,
