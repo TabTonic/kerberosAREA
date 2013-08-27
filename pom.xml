@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.tabtonic</groupId>
 	<artifactId>kerberosAREA</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>kerberosAREA</name>
@@ -20,7 +19,7 @@
 		<url>https://github.com/TabTonic/kerberosAREA</url>
 		<connection>scm:git:git://github.com/TabTonic/kerberosAREA.git/</connection>
 		<developerConnection>scm:git:git@github.com:TabTonic/kerberosAREA.git</developerConnection>
-		<tag>kerberosAREA-0.0.1</tag>
+		<tag>kerberosAREA-1.0.1</tag>
 	</scm>
 
 	<distributionManagement>
@@ -221,8 +220,7 @@
 
 					<transformers>
 						<!-- Manifest Entries -->
-						<transformer
-							implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+						<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 							<manifestEntries>
 								<Built-By>TabTonic</Built-By>
 								<Created-By>TabTonic Standard Build Configuration for Maven 1.0</Created-By>
@@ -232,11 +230,9 @@
 							</manifestEntries>
 						</transformer>
 						<!-- Combine Licenses from Dependencies -->
-						<transformer
-							implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer" />
+						<transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer" />
 						<!-- Combine Notices from Dependencies -->
-						<transformer
-							implementation="org.apache.maven.plugins.shade.resource.ApacheNoticeResourceTransformer">
+						<transformer implementation="org.apache.maven.plugins.shade.resource.ApacheNoticeResourceTransformer">
 							<addHeader>false</addHeader>
 						</transformer>
 					</transformers>
