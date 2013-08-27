@@ -1,5 +1,33 @@
+<!-- 
+     Copyright (C) 2013 TabTonic LLC
+  
+     This file is part of kerberosAREA.
+ 
+     kerberosAREA is free software: you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+ 
+     kerberosAREA is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU General Public License for more details.
+ 
+     You should have received a copy of the GNU General Public License
+     along with kerberosAREA.  If not, see <http://opensource.org/licenses/gpl-3.0.html>.
+-->
+
+
 <!-- This sample configuration needs to be merged with the existing
-pluginsvr_config.xml file in order to install the plugin -->
+pluginsvr_config.xml file in order to install the plugin 
+
+*****
+IMPORTANT: 
+
+Pay attention and edit the paths in the filename and pathelement sections
+These will have to be updated to the installation directory
+*****
+-->
 
 <plugin>
     <!-- name can be anything unique -->
@@ -9,18 +37,11 @@ pluginsvr_config.xml file in order to install the plugin -->
     <!-- must be JAVA -->
     <code>JAVA</code>
     <!-- The installation file -->
-    <filename>C:/Program Files/BMC Software/ARSystem/Arserver/plugins/kerberosAREA/kerberosAREA-0.0.1-SNAPSHOT.jar</filename>
+    <filename>/opt/bmc/ARSystem/plugins/kerberosAREA/kerberosAREA-0.0.1-SNAPSHOT.jar</filename>
     <!-- The class which extends AREAPlugin or implements the AREAPluggable interface -->
-    <classname>com.tabtonic.kerberosAREA</classname>
+    <classname>com.tabtonic.kerberosAREA.kerberosAREA</classname>
     <!-- pathelement type="path" includes any dependency directories -->
-    <!-- <pathelement type="path">C:/Program Files/BMC Software/ARSystem/Arserver/plugins/kerberosAREA/</pathelement> -->
-    <!-- pathelement type="location" includes any dependency jars -->
-    <!-- <pathelement type="location"></pathelement> -->
-    
-    <!-- userDefined includes any configuration information specific to a given plugin -->
-    <userDefined>
-        <anything>My Configuration Info</anything>
-    </userDefined>
+    <pathelement type="path">/opt/bmc/ARSystem/plugins/kerberosAREA/</pathelement>
 </plugin>
 
 
