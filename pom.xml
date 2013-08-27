@@ -139,6 +139,12 @@
                     <dependency>
                         <!-- for parsing markdown -->
                         <groupId>org.apache.maven.doxia</groupId>
+                        <artifactId>doxia-module-fml</artifactId>
+                        <version>1.4</version>
+                    </dependency>                    
+                    <dependency>
+                        <!-- for parsing markdown -->
+                        <groupId>org.apache.maven.doxia</groupId>
                         <artifactId>doxia-module-markdown</artifactId>
                         <version>1.4</version>
                     </dependency>
