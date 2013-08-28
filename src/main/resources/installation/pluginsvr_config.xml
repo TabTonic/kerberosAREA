@@ -37,7 +37,7 @@ These will have to be updated to the installation directory
     <!-- must be JAVA -->
     <code>JAVA</code>
     <!-- The installation file -->
-    <filename>/opt/bmc/ARSystem/plugins/kerberosAREA/kerberosAREA-0.0.1-SNAPSHOT.jar</filename>
+    <filename>/opt/bmc/ARSystem/plugins/kerberosAREA/${project.build.finalName}.jar</filename>
     <!-- The class which extends AREAPlugin or implements the AREAPluggable interface -->
     <classname>com.tabtonic.kerberosAREA.kerberosAREA</classname>
     <!-- pathelement type="path" includes any dependency directories -->
