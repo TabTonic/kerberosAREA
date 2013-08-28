@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.tabtonic</groupId>
@@ -100,7 +101,7 @@
 	</dependencyManagement>
 
 	<build>
-	    <finalName>${project.artifactId}-${project.version}-r${buildNumber}</finalName>
+		<finalName>${project.artifactId}-${project.version}-r${buildNumber}</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -221,19 +222,20 @@
 				<configuration>
 					<minimizeJar>false</minimizeJar>
 					<filters>
-					 <filter>
-					 <artifact>com.bmc:pluginsvr</artifact>
-					 <excludes>
-                        <exclude>com/bmc/**</exclude>
-                        <exclude>/**</exclude>
-					 </excludes>
-					 </filter>
+						<filter>
+							<artifact>com.bmc:pluginsvr</artifact>
+							<excludes>
+								<exclude>com/bmc/**</exclude>
+								<exclude>/**</exclude>
+							</excludes>
+						</filter>
 					</filters>
 
 
 					<transformers>
 						<!-- Manifest Entries -->
-						<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+						<transformer
+							implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 							<manifestEntries>
 								<Built-By>TabTonic</Built-By>
 								<Created-By>TabTonic Standard Build Configuration for Maven 1.0</Created-By>
@@ -243,9 +245,11 @@
 							</manifestEntries>
 						</transformer>
 						<!-- Combine Licenses from Dependencies -->
-						<transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer" />
+						<transformer
+							implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer" />
 						<!-- Combine Notices from Dependencies -->
-						<transformer implementation="org.apache.maven.plugins.shade.resource.ApacheNoticeResourceTransformer">
+						<transformer
+							implementation="org.apache.maven.plugins.shade.resource.ApacheNoticeResourceTransformer">
 							<addHeader>false</addHeader>
 						</transformer>
 					</transformers>
@@ -277,13 +281,93 @@
 					</execution>
 				</executions>
 			</plugin>
-
-
+            <plugin>
+                <groupId>com.github.danielflower.mavenplugins</groupId>
+                <artifactId>maven-gitlog-plugin</artifactId>
+                <version>1.5.0</version>
+                <configuration>
+                    <reportTitle>Changelog for ${project.name} version ${project.version}</reportTitle>
+                    <verbose>true</verbose>
+                    <outputDirectory>target/docs</outputDirectory>
+                    <generatePlainTextChangeLog>true</generatePlainTextChangeLog>
+                    <plainTextChangeLogFilename>changelog-${project.version}.txt</plainTextChangeLogFilename>
+                    <generateMarkdownChangeLog>true</generateMarkdownChangeLog>
+                    <markdownChangeLogFilename>changelog-${project.version}.md</markdownChangeLogFilename>
+                    <fullGitMessage>true</fullGitMessage>
+                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- start file copy/archive -->
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>copy-maven-plugin</artifactId>
+                <version>0.2.5</version>
+                <executions>
+                    <execution>
+                        <id>create-archive</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <!-- ~~~~~~~~~~~~~~ -->
+                                <!-- Copy resources -->
+                                <!-- ~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${project.build.directory}/dist/</targetPath>
+                                    <directory>${project.basedir}/src/main/resources/installation</directory>
+                                    <preservePath>true</preservePath>
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>**</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <targetPath>${project.build.directory}/dist/</targetPath>
+                                    <directory>${project.build.directory}</directory>
+                                    <includes>
+                                        <include>${project.build.finalName}.jar</include>
+                                    </includes>
+                                </resource>
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <!-- Create final archive and attach it as Maven artifact -->
+                                <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                                <resource>
+                                    <targetPath>${project.build.directory}/${project.build.finalName}-dist.zip</targetPath>
+                                    <directory>${project.build.directory}/dist</directory>
+                                    <pack>true</pack>
+                                    <attachArtifact>false</attachArtifact>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- end file copy/archive -->
 		</plugins>
 	</build>
 	<reporting>
 		<plugins>
 			<!-- reporting plugins -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-changes-plugin</artifactId>
+				<version>2.9</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>github-report</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
