@@ -329,6 +329,15 @@
                                         <include>**</include>
                                     </includes>
                                 </resource>
+<!-- 
+                                <resource>
+                                    <targetPath>${project.build.directory}/dist/</targetPath>
+                                    <directory>${project.build.directory}/docs/</directory>
+                                    <includes>
+                                        <include>changelog-${project-version}.md</include>
+                                    </includes>
+                                </resource>
+ -->
                                 <resource>
                                     <targetPath>${project.build.directory}/dist/</targetPath>
                                     <directory>${project.build.directory}</directory>
@@ -336,6 +345,15 @@
                                         <include>${project.build.finalName}.jar</include>
                                     </includes>
                                 </resource>
+<!-- 
+                                <resource>
+                                    <targetPath>${project.build.directory}}/dist/</targetPath>
+                                    <directory>${project.build.directory}/../</directory>
+                                    <includes>
+                                        <include>README.md</include>
+                                    </includes>
+                                </resource>
+ -->                                
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                                 <!-- Create final archive and attach it as Maven artifact -->
                                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
