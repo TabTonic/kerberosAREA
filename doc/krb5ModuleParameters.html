@@ -9,9 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20130829" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>kerberosAREA - 
-
-Using XHTML</title>
+    <title>kerberosAREA - </title>
     <link rel="stylesheet" href="../css/apache-maven-fluido-1.3.0.min.css" />
     <link rel="stylesheet" href="../css/site.css" />
     <link rel="stylesheet" href="../css/print.css" media="print" />
@@ -20,7 +18,7 @@ Using XHTML</title>
     <script type="text/javascript" src="../js/apache-maven-fluido-1.3.0.min.js"></script>
 
     
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />        </head>
+            </head>
         <body class="topBarDisabled">
           
                 
@@ -135,10 +133,12 @@ Using XHTML</title>
         Working with Git</a>
             </li>
                   
-      <li class="active">
+      <li>
     
-            <a href="#"><i class="none"></i>Documentation with xhtml</a>
-          </li>
+                          <a href="../info/using-xhtml.html" title="Documentation with xhtml">
+          <i class="none"></i>
+        Documentation with xhtml</a>
+            </li>
                   
       <li>
     
@@ -181,37 +181,23 @@ Using XHTML</title>
                 
         <div id="bodyColumn"  class="span9" >
                                   
-            
-
-
-
-
-<h1>Using XHTML for project pages</h1>
-
-<p>Markdown is easy to work with, but there are some things that Markdown is not very good at.</p>
-
-<p>Use XHTML when you need to </p>
-
-<ul>
-  
-<li>Insert Images</li>
-  
-<li>Use Tables</li>
-  
-<li>Use Javascript</li>
-  
-<li>Do complicated layouts</li>
-</ul>
-
-<p>You can build the xhtml page in Dreamweaver or any other XHTML editor.</p>
-
-<p>You can use <a class="externalLink" href="http://maven.apache.org/doxia/references/index.html">XHTML, Markdown, FML, LaTeX, RTF, or Xdoc</a> to produce site pages as long as they are in the appropriate directory.</p>
-
-<p>If a file has the extra extension &quot;.vm&quot; it will be rendered by <a class="externalLink" href="http://velocity.apache.org/site/tools/velocity-site-doxia-renderer/">Velocity</a>. This allows you to include things like the Project Name, Version, etc. in your site pages.</p>
-
-<p><img src="/images/logo-tabtonic-150x75.png" width="150" height="75" alt="" /></p>
-
-
+            <p>Referenced from the <a class="externalLink" href="http://docs.oracle.com/javase/6/docs/jre/api/security/jaas/spec/com/sun/security/auth/module/Krb5LoginModule.html">JavaSE6 documentation</a>.</p>
+<p>The following is a list of configuration options supported for Krb5LoginModule:</p>
+<p><b>refreshKrb5Config:</b>  Set this to true, if you want the configuration to be refreshed before the login method is called.</p>
+<p><b>useTicketCache:</b>  Set this to true, if you want the TGT to be obtained from the ticket cache. Set this option to false if you do not want this module to use the ticket cache. (Default is False). This module will search for the tickect cache in the following locations: For Windows 2000, it will use Local Security Authority (LSA) API to get the TGT. On Solaris and Linux it will look for the ticket cache in /tmp/krb5cc<i>uid where the uid is numeric user identifier. If the ticket cache is not available in either of the above locations, or if we are on a different Windows platform, it will look for the cache as {user.home}{file.separator}krb5cc</i>{user.name}. You can override the ticket cache location by using ticketCache</p>
+<p><b>ticketCache:</b>  Set this to the name of the ticket cache that contains user&#x2019;s TGT. If this is set, useTicketCache must also be set to true; Otherwise a configuration error will be returned.</p>
+<p><b>renewTGT:</b>  Set this to true, if you want to renew the TGT. If this is set, useTicketCache must also be set to true; otherwise a configuration error will be returned.</p>
+<p><b>doNotPrompt:</b>  Set this to true if you do not want to be prompted for the password if credentials can not be obtained from the cache or keytab.(Default is false) If set to true authentication will fail if credentials can not be obtained from the cache or keytab.</p>
+<p><b>useKeyTab:</b>  Set this to true if you want the module to get the principal&#x2019;s key from the the keytab.(default value is False) If keyatb is not set then the module will locate the keytab from the Kerberos configuration file. If it is not specifed in the Kerberos configuration file then it will look for the file {user.home}{file.separator}krb5.keytab.</p>
+<p><b>keyTab:</b>  Set this to the file name of the keytab to get principal&#x2019;s secret key.</p>
+<p><b>storeKey:</b>  Set this to true to if you want the principal&#x2019;s key to be stored in the Subject&#x2019;s private credentials. </p>
+<p><b>principal:</b>  The name of the principal that should be used. The principal can be a simple username such as &#x201c;testuser&#x201d; or a service name such as &#x201c;host/testhost.eng.sun.com&#x201d;. You can use the principal option to set the principal when there are credentials for multiple principals in the keyTab or when you want a specific ticket cache only. The principal can also be set using the system property sun.security.krb5.principal. In addition, if this system property is defined, then it will be used. If this property is not set, then the principal name from the configuration will be used.</p>
+<p><b>isInitiator:</b>  Set this to true, if initiator. Set this to false, if acceptor only. (Default is true). Note: Do not set this value to false for initiators. </p>
+<p>This LoginModule also recognizes the following additional Configuration options that enable you to share username and passwords across different authentication modules:</p>
+<p><b>useFirstPass</b> if, true, this LoginModule retrieves the  username and password from the module&#x2019;s shared state,  using &#x201c;javax.security.auth.login.name&#x201d; and  &#x201c;javax.security.auth.login.password&#x201d; as the respective  keys. The retrieved values are used for authentication.  If authentication fails, no attempt for a retry  is made, and the failure is reported back to the  calling application.</p>
+<p><b>tryFirstPass</b> if, true, this LoginModule retrieves the  the username and password from the module&#x2019;s shared  state using &#x201c;javax.security.auth.login.name&#x201d; and  &#x201c;javax.security.auth.login.password&#x201d; as the respective  keys. The retrieved values are used for  authentication.  If authentication fails, the module uses the  CallbackHandler to retrieve a new username  and password, and another attempt to authenticate  is made. If the authentication fails,  the failure is reported back to the calling application</p>
+<p><b>storePass</b> if, true, this LoginModule stores the username and  password obtained from the CallbackHandler in the  modules shared state, using  &#x201c;javax.security.auth.login.name&#x201d; and  &#x201c;javax.security.auth.login.password&#x201d; as the respective  keys. This is not performed if existing values already  exist for the username and password in the shared  state, or if authentication fails.</p>
+<p><b>clearPass</b> if, true, this LoginModule clears the  username and password stored in the module&#x2019;s shared  state after both phases of authentication  (login and commit) have completed.</p>
                   </div>
             </div>
           </div>
