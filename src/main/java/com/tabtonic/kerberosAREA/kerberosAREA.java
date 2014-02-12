@@ -82,8 +82,9 @@ public class kerberosAREA extends AREAPlugin {
 		try {
 			prop.load(in);
 		} catch (IOException e1) {
-			logger.error("Failed to load configuration file: kerberosAREA.config");
+			logger.error("Failed to load configuration file: kerberosAREA.config: {}", e1.getMessage());
 		}
+		
 		//We need to convert the auth.login.config value before passing it to JAAS
 		String loginConfigFile=prop.getProperty("java.security.auth.login.config");
 		String loginConfigFileExForm = getClass().getResource(loginConfigFile).toExternalForm();
@@ -147,7 +148,7 @@ public class kerberosAREA extends AREAPlugin {
 		
 		//for trusted IPs (i.e. midtier), accept the given login
 		if(trustedIPs.containsKey(networkAddress)){
-			response.setLoginStatus(AREAResponse.AREA_LOGIN_SUCCESS);
+			response.setLoginStatus(AREAResponse.AREA_LOGIN_SUCCESS);			
 			return response;
 		}
 
