@@ -19,7 +19,7 @@
 		<url>https://github.com/TabTonic/kerberosAREA</url>
 		<connection>scm:git:git://github.com/TabTonic/kerberosAREA.git/</connection>
 		<developerConnection>scm:git:git@github.com:TabTonic/kerberosAREA.git</developerConnection>
-		<tag>kerberosAREA-0.0.1</tag>
+		<tag>${project.artifactId}-${project.version}</tag>
 	</scm>
 
 	<distributionManagement>
@@ -108,6 +108,7 @@
 					<!-- Exclude any files from the src/main/resources/build from the resulting 
 						jar -->
 					<exclude>build/**</exclude>
+					<exclude>installation/**</exclude>
 				</excludes>
 			</resource>
 		</resources>
@@ -187,21 +188,6 @@
 						<item>buildNumber</item>
 					</items>
 				</configuration>
-			</plugin>
-			<plugin>
-				<!-- this plugin parses the version information later to be used in the 
-					launch4j configuration -->
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.8</version>
-				<executions>
-					<execution>
-						<id>parse-version</id>
-						<goals>
-							<goal>parse-version</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
