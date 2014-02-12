@@ -50,20 +50,23 @@ public class UAndPCallbackHandler implements CallbackHandler {
 	private char[] _password;
 	
 	public UAndPCallbackHandler(String userName, char[] password){
+		logger.trace(Messages.getString("UAndPCallbackHandler.log.InitializingUAndP")); //$NON-NLS-1$
 		_userName = userName;
 		_password = password.clone();
 	}
 	
 	public void handle(Callback[] callbacks) throws IOException,
 			UnsupportedCallbackException {
-		logger.trace("Callback Handler Handle called");
+		logger.trace(Messages.getString("UAndPCallbackHandler.log.CallingCallback")); //$NON-NLS-1$
 		for(Callback callback : callbacks){
 			if(callback instanceof NameCallback && _userName != null){
-				logger.trace("Name callback handler called for {}", _userName);
+				logger.trace(Messages.getString("UAndPCallbackHandler.log.NameCallback"), _userName); //$NON-NLS-1$
 				((NameCallback) callback).setName(_userName);
 			} else if (callback instanceof PasswordCallback && _password != null){
-				logger.trace("Password callback handler called for {}", _userName);
+				logger.trace(Messages.getString("UAndPCallbackHandler.log.PasswordCallback"), _userName); //$NON-NLS-1$
 				((PasswordCallback) callback).setPassword(_password);
+			} else {
+				logger.trace(Messages.getString("UAndPCallbackHandler.log.NoActionCallback"), callback.getClass().getSimpleName()); //$NON-NLS-1$
 			}
 		}
 	}

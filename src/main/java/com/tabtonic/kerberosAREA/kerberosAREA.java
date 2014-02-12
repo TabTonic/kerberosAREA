@@ -54,13 +54,13 @@ public class kerberosAREA extends AREAPlugin {
 	 * for log output
 	 */
 	final Logger logger = LoggerFactory.getLogger(kerberosAREA.class);
-	private ARPluginInfo pluginInfo = new ARPluginInfo("kerberosAREA", this);
+	private ARPluginInfo pluginInfo = new ARPluginInfo(Messages.getString("kerberosAREA.pluginInfo"), this); //$NON-NLS-1$
 	private static HashMap<String, Integer> trustedIPs = new HashMap<String, Integer>();
 	/**
 	 * Constructor
 	 */
 	public kerberosAREA(){
-		
+		logger.trace(Messages.getString("kerberosAREA.log.KAConstructor")); //$NON-NLS-1$
 	}
 	
 	/**
@@ -73,22 +73,23 @@ public class kerberosAREA extends AREAPlugin {
 	 */
 	@Override
 	public void initialize(ARPluginContext context) throws ARException {
-		context.logMessage(pluginInfo, ARPluginContext.PLUGIN_LOG_LEVEL_INFO, "Initializing kerberosAREA");
-
+		context.logMessage(pluginInfo, ARPluginContext.PLUGIN_LOG_LEVEL_INFO, Messages.getString("kerberosAREA.log.KAInit")); //$NON-NLS-1$
+		logger.trace(Messages.getString("kerberosAREA.log.KAInit")); //$NON-NLS-1$
 
 		Properties prop = new Properties();
 		
-		InputStream in = getClass().getResourceAsStream("/kerberosAREA.config");
+		logger.trace(Messages.getString("kerberosAREA.log.loadingConfig")); //$NON-NLS-1$
+		InputStream in = getClass().getResourceAsStream(Messages.getString("kerberosAREA.configFile")); //$NON-NLS-1$
 		try {
 			prop.load(in);
 		} catch (IOException e1) {
-			logger.error("Failed to load configuration file: kerberosAREA.config: {}", e1.getMessage());
+			logger.error(Messages.getString("kerberosAREA.log.configFileLoadFailure"), e1.getMessage()); //$NON-NLS-1$
 		}
 		
 		//We need to convert the auth.login.config value before passing it to JAAS
-		String loginConfigFile=prop.getProperty("java.security.auth.login.config");
+		String loginConfigFile=prop.getProperty(Messages.getString("kerberosAREA.jsa.loginConfig")); //$NON-NLS-1$
 		String loginConfigFileExForm = getClass().getResource(loginConfigFile).toExternalForm();
-		prop.setProperty("java.security.auth.login.config", loginConfigFileExForm);
+		prop.setProperty(Messages.getString("kerberosAREA.jsa.loginConfig"), loginConfigFileExForm); //$NON-NLS-1$
 		
 		
 
@@ -96,11 +97,13 @@ public class kerberosAREA extends AREAPlugin {
 		Enumeration<Object> propenum = prop.keys();
 		while(propenum.hasMoreElements()){
 			String property = (String) propenum.nextElement();
-			if(property.startsWith("java.security") ||
-			   property.startsWith("sun.security")){
+			if(property.startsWith(Messages.getString("kerberosAREA.java.security")) || //$NON-NLS-1$
+			   property.startsWith(Messages.getString("kerberosAREA.sun.security"))){ //$NON-NLS-1$
+				logger.trace(Messages.getString("kerberosAREA.log.setSystemProperty"), property, prop.getProperty(property)); //$NON-NLS-1$
 				System.setProperty(property, prop.getProperty(property));
 			} //add any trusted ip addresses to the hashmap
-			else if(property.startsWith("trusted")) {
+			else if(property.startsWith(Messages.getString("kerberosAREA.TRUSTED"))) { //$NON-NLS-1$
+				logger.trace(Messages.getString("kerberosAREA.log.TrustingAuthInfo"), prop.getProperty(property)); //$NON-NLS-1$
 				trustedIPs.put(prop.getProperty(property), 1);
 			}
 		}
@@ -121,7 +124,7 @@ public class kerberosAREA extends AREAPlugin {
 	 */
 	@Override
 	public boolean areaNeedSync(ARPluginContext context) throws ARException {
-		 
+		logger.trace(Messages.getString("kerberosAREA.log.areaNeedSyncCalled"), context.getUser());		 //$NON-NLS-1$
 		return true;
 	}
 
@@ -141,30 +144,34 @@ public class kerberosAREA extends AREAPlugin {
 	@Override
 	public AREAResponse areaVerifyLogin(ARPluginContext context, String user,
 			String password, String networkAddress, String authString) throws ARException {
-		logger.trace("Verify login for {} from {}", user, networkAddress);
+		logger.trace(Messages.getString("kerberosAREA.log.verifyLogin"), user, networkAddress); //$NON-NLS-1$
 
 		//we need to return an AREAResponse object
 		AREAResponse response = new AREAResponse();
 		
 		//for trusted IPs (i.e. midtier), accept the given login
 		if(trustedIPs.containsKey(networkAddress)){
+			logger.trace(Messages.getString("kerberosAREA.log.AddressIsTrusted"),networkAddress,user ); //$NON-NLS-1$
 			response.setLoginStatus(AREAResponse.AREA_LOGIN_SUCCESS);			
 			return response;
 		}
 
-		
+		logger.trace(Messages.getString("kerberosAREA.log.AddressIsNotTrusted")); //$NON-NLS-1$
 		LoginContext lc;
 		try {
-			lc = new LoginContext("primaryLoginContext", new UAndPCallbackHandler(user, password.toCharArray()));
+			logger.trace(Messages.getString("kerberosAREA.log.callingCallbackHandler")); //$NON-NLS-1$
+			lc = new LoginContext(Messages.getString("kerberosAREA.PRIMARYLOGINCONTEXT"), new UAndPCallbackHandler(user, password.toCharArray())); //$NON-NLS-1$
 			//verify login credentials	
+			logger.trace(Messages.getString("kerberosAREA.log.testingLogin")); //$NON-NLS-1$
 			lc.login();
+			logger.trace(Messages.getString("kerberosAREA.log.SuccessfulAuth")); //$NON-NLS-1$
 			response.setLoginStatus(AREAResponse.AREA_LOGIN_SUCCESS);
 		} catch (LoginException e) {
+			logger.error(Messages.getString("kerberosAREA.log.FailedAuth"), user); //$NON-NLS-1$
 			response.setLoginStatus(AREAResponse.AREA_LOGIN_FAILED);
-			logger.error("Authorization Failure for user {}", user);
 		}			
 		
-
+		logger.trace(Messages.getString("kerberosAREA.log.ReturningResponse")); //$NON-NLS-1$
 		return response;
 		
 	}
