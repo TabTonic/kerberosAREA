@@ -60,24 +60,27 @@
 <a class="jxr_linenumber" name="50" href="#50">50</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">char</strong>[] _password;
 <a class="jxr_linenumber" name="51" href="#51">51</a>  	
 <a class="jxr_linenumber" name="52" href="#52">52</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../com/tabtonic/kerberosAREA/UAndPCallbackHandler.html">UAndPCallbackHandler</a>(String userName, <strong class="jxr_keyword">char</strong>[] password){
-<a class="jxr_linenumber" name="53" href="#53">53</a>  		_userName = userName;
-<a class="jxr_linenumber" name="54" href="#54">54</a>  		_password = password.clone();
-<a class="jxr_linenumber" name="55" href="#55">55</a>  	}
-<a class="jxr_linenumber" name="56" href="#56">56</a>  	
-<a class="jxr_linenumber" name="57" href="#57">57</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> handle(Callback[] callbacks) <strong class="jxr_keyword">throws</strong> IOException,
-<a class="jxr_linenumber" name="58" href="#58">58</a>  			UnsupportedCallbackException {
-<a class="jxr_linenumber" name="59" href="#59">59</a>  		logger.trace(<span class="jxr_string">"Callback Handler Handle called"</span>);
-<a class="jxr_linenumber" name="60" href="#60">60</a>  		<strong class="jxr_keyword">for</strong>(Callback callback : callbacks){
-<a class="jxr_linenumber" name="61" href="#61">61</a>  			<strong class="jxr_keyword">if</strong>(callback instanceof NameCallback &amp;&amp; _userName != <strong class="jxr_keyword">null</strong>){
-<a class="jxr_linenumber" name="62" href="#62">62</a>  				logger.trace(<span class="jxr_string">"Name callback handler called for {}"</span>, _userName);
-<a class="jxr_linenumber" name="63" href="#63">63</a>  				((NameCallback) callback).setName(_userName);
-<a class="jxr_linenumber" name="64" href="#64">64</a>  			} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (callback instanceof PasswordCallback &amp;&amp; _password != <strong class="jxr_keyword">null</strong>){
-<a class="jxr_linenumber" name="65" href="#65">65</a>  				logger.trace(<span class="jxr_string">"Password callback handler called for {}"</span>, _userName);
-<a class="jxr_linenumber" name="66" href="#66">66</a>  				((PasswordCallback) callback).setPassword(_password);
-<a class="jxr_linenumber" name="67" href="#67">67</a>  			}
-<a class="jxr_linenumber" name="68" href="#68">68</a>  		}
-<a class="jxr_linenumber" name="69" href="#69">69</a>  	}
-<a class="jxr_linenumber" name="70" href="#70">70</a>  }
+<a class="jxr_linenumber" name="53" href="#53">53</a>  		logger.trace(Messages.getString(<span class="jxr_string">"UAndPCallbackHandler.log.InitializingUAndP"</span>)); <em class="jxr_comment">//$NON-NLS-1$</em>
+<a class="jxr_linenumber" name="54" href="#54">54</a>  		_userName = userName;
+<a class="jxr_linenumber" name="55" href="#55">55</a>  		_password = password.clone();
+<a class="jxr_linenumber" name="56" href="#56">56</a>  	}
+<a class="jxr_linenumber" name="57" href="#57">57</a>  	
+<a class="jxr_linenumber" name="58" href="#58">58</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> handle(Callback[] callbacks) <strong class="jxr_keyword">throws</strong> IOException,
+<a class="jxr_linenumber" name="59" href="#59">59</a>  			UnsupportedCallbackException {
+<a class="jxr_linenumber" name="60" href="#60">60</a>  		logger.trace(Messages.getString(<span class="jxr_string">"UAndPCallbackHandler.log.CallingCallback"</span>)); <em class="jxr_comment">//$NON-NLS-1$</em>
+<a class="jxr_linenumber" name="61" href="#61">61</a>  		<strong class="jxr_keyword">for</strong>(Callback callback : callbacks){
+<a class="jxr_linenumber" name="62" href="#62">62</a>  			<strong class="jxr_keyword">if</strong>(callback instanceof NameCallback &amp;&amp; _userName != <strong class="jxr_keyword">null</strong>){
+<a class="jxr_linenumber" name="63" href="#63">63</a>  				logger.trace(Messages.getString(<span class="jxr_string">"UAndPCallbackHandler.log.NameCallback"</span>), _userName); <em class="jxr_comment">//$NON-NLS-1$</em>
+<a class="jxr_linenumber" name="64" href="#64">64</a>  				((NameCallback) callback).setName(_userName);
+<a class="jxr_linenumber" name="65" href="#65">65</a>  			} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (callback instanceof PasswordCallback &amp;&amp; _password != <strong class="jxr_keyword">null</strong>){
+<a class="jxr_linenumber" name="66" href="#66">66</a>  				logger.trace(Messages.getString(<span class="jxr_string">"UAndPCallbackHandler.log.PasswordCallback"</span>), _userName); <em class="jxr_comment">//$NON-NLS-1$</em>
+<a class="jxr_linenumber" name="67" href="#67">67</a>  				((PasswordCallback) callback).setPassword(_password);
+<a class="jxr_linenumber" name="68" href="#68">68</a>  			} <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="69" href="#69">69</a>  				logger.trace(Messages.getString(<span class="jxr_string">"UAndPCallbackHandler.log.NoActionCallback"</span>), callback.getClass().getSimpleName()); <em class="jxr_comment">//$NON-NLS-1$</em>
+<a class="jxr_linenumber" name="70" href="#70">70</a>  			}
+<a class="jxr_linenumber" name="71" href="#71">71</a>  		}
+<a class="jxr_linenumber" name="72" href="#72">72</a>  	}
+<a class="jxr_linenumber" name="73" href="#73">73</a>  }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>
