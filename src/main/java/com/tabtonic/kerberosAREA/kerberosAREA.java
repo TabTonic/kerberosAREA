@@ -157,14 +157,16 @@ public class kerberosAREA extends AREAPlugin {
 		//we need to return an AREAResponse object
 		AREAResponse response = new AREAResponse();
 		
-		//for trusted IPs (i.e. midtier), accept the given login
-		if(instanceTrustedIPs.containsKey(networkAddress)){
-			logger.trace(Messages.getString("kerberosAREA.log.AddressIsTrusted"),networkAddress,user ); //$NON-NLS-1$
-			response.setLoginStatus(AREAResponse.AREA_LOGIN_SUCCESS);			
-			return response;
+		if(null != networkAddress && !(networkAddress.isEmpty())){
+			//for trusted IPs (i.e. midtier), accept the given login
+			if(instanceTrustedIPs.containsKey(networkAddress)){
+				logger.trace(Messages.getString("kerberosAREA.log.AddressIsTrusted"),networkAddress,user ); //$NON-NLS-1$
+				response.setLoginStatus(AREAResponse.AREA_LOGIN_SUCCESS);			
+				return response;
+			}
+			
+			logger.trace(Messages.getString("kerberosAREA.log.AddressIsNotTrusted")); //$NON-NLS-1$
 		}
-
-		logger.trace(Messages.getString("kerberosAREA.log.AddressIsNotTrusted")); //$NON-NLS-1$
 		LoginContext lc = null;
 		try {
 			logger.trace(Messages.getString("kerberosAREA.log.callingCallbackHandler")); //$NON-NLS-1$
