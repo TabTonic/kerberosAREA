@@ -19,7 +19,7 @@
 		<url>https://github.com/TabTonic/kerberosAREA</url>
 		<connection>scm:git:git://github.com/TabTonic/kerberosAREA.git/</connection>
 		<developerConnection>scm:git:git@github.com:TabTonic/kerberosAREA.git</developerConnection>
-		<tag>kerberosAREA-1.0.4</tag>
+		<tag>kerberosAREA-1.0.5</tag>
 	</scm>
 
 	<distributionManagement>
